@@ -1,0 +1,17 @@
+# Node.js dependencies
+node_modules/
+
+# Node.js dependencies in client folder
+client/node_modules/
+
+# Python environment (FastAPI)
+__pycache__/
+*.py[cod]
+*.env
+venv/
+.env
+
+# Egyéb build, log, ideiglenes fájlok
+*.log
+dist/
+build/
