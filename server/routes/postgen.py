@@ -8,8 +8,13 @@ import httpx
 import openai
 from fastapi import UploadFile, File
 from dotenv import load_dotenv
-load_dotenv()
+from services.meta_api import post_to_facebook, post_to_instagram
+from services.stability_api import generate_image, generate_video
+from service.x_api import post_to_x
+from service.linkedin_api import post_to_linkedin
 
+
+load_dotenv()
 router = APIRouter()
 
 STORAGE_DIR = os.path.join(os.path.dirname(__file__), "..", "storage")
@@ -43,7 +48,7 @@ async def generate_post(data: PostGenRequest):
     results = []
     for p in prompts:
         # ÚJ OpenAI API hívás
-        chat_response = await openai.chat.completions.create(
+        chat_response = openai.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": f"Készíts egy {data.platform} posztot magyarul!"},
@@ -53,7 +58,7 @@ async def generate_post(data: PostGenRequest):
             n=1,
         )
         text = chat_response.choices[0].message.content.strip()
-        img_response = await openai.images.generate(
+        img_response = openai.images.generate(
             model="dall-e-2",
             prompt=p,
             n=1,
@@ -161,3 +166,40 @@ async def get_posts():
             with open(os.path.join(STORAGE_DIR, fname), encoding="utf-8") as f:
                 posts.append(json.load(f))
     return posts
+
+# Példa route Facebook poszthoz
+@router.post("/post-facebook")
+async def post_facebook_route(data: dict):
+    page_id = data.get("page_id")
+    access_token = data.get("access_token")
+    message = data.get("message")
+    image_url = data.get("image_url")
+    resp = post_to_facebook(page_id, access_token, message, image_url)
+    return resp
+
+# Példa route Instagram poszthoz
+@router.post("/post-instagram")
+async def post_instagram_route(data: dict):
+    ig_user_id = data.get("ig_user_id")
+    access_token = data.get("access_token")
+    image_url = data.get("image_url")
+    caption = data.get("caption")
+    resp = post_to_instagram(ig_user_id, access_token, image_url, caption)
+    return resp
+
+@router.post("/post-x")
+async def post_x_route(data: dict):
+    access_token = data.get("access_token")
+    message = data.get("message")
+    image_url = data.get("image_url")
+    resp = post_to_x(access_token, message, image_url)
+    return resp
+
+@router.post("/post-linkedin")
+async def post_linkedin_route(data: dict):
+    access_token = data.get("access_token")
+    message = data.get("message")
+    image_url = data.get("image_url")
+    resp = post_to_linkedin(access_token, message, image_url)
+    return resp
+

@@ -1,0 +1,178 @@
+.container {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Általános tartalomstílus */
+.content {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+
+  textarea {
+    width: 100%;
+    height: 150px;
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+    transition: border 0.2s;
+    &:focus {
+      border: 1.5px solid #1877f2;
+      outline: none;
+    }
+  }
+
+  button {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #111;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s;
+
+    &:hover {
+      background-color: #333;
+    }
+    &:disabled {
+      background: #bbb;
+      cursor: not-allowed;
+    }
+  }
+
+  h3, h4 {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  /* AI kép/videó választó */
+  .mediaSelector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1rem;
+    img, video {
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: border 0.2s, box-shadow 0.2s;
+      &:hover {
+        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      }
+    }
+  }
+
+  /* Fájl lista */
+  ul {
+    margin: 0.5rem 0 1rem 0;
+    padding-left: 1.2rem;
+    li {
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+      word-break: break-all;
+    }
+  }
+
+  /* Linkek */
+  form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    input[type="url"] {
+      flex: 1;
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 0;
+      padding: 0.5rem 1rem;
+    }
+  }
+}
+
+/* Platform-specifikus stílusok */
+.facebook {
+  background-color: #f0f2f5;
+}
+.instagram {
+  background: linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+  color: white;
+}
+.x {
+  background-color: #000;
+  color: white;
+}
+.thread {
+  background-color: #f0f0f0;
+}
+.linkedin {
+  background-color: #eef3f8;
+}
+.tiktok {
+  background-color: #010101;
+  color: white;
+}
+.youtube {
+  background-color: #ff0000;
+  color: white;
+}
+
+/* AI opciók platform színnel */
+.optionBox {
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background: #fafbfc;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: border 0.2s, background 0.2s;
+  img {
+    max-width: 120px;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+  }
+}
+.optionBox.facebook {
+  border-color: #1877f2;
+  background: #f0f4ff;
+}
+.optionBox.instagram {
+  border-color: #e1306c;
+  background: #fff0f7;
+}
+.optionBox.threads {
+  border-color: #000;
+  background: #f7f7f7;
+}
+.optionBox.x {
+  border-color: #222;
+  background: #f5f8fa;
+}
+.optionBox.linkedin {
+  border-color: #0077b5;
+  background: #eaf4fb;
+}
+.optionBox.tiktok {
+  border-color: #010101;
+  background: #f0f0f0;
+}
+.optionBox.youtube {
+  border-color: #ff0000;
+  background: #fff0f0;
+}

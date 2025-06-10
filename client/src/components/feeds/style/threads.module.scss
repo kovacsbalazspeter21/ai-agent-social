@@ -1,0 +1,36 @@
+/* components/feeds/XFeed.module.scss */
+
+.feedContainer {
+  background: #15202b;
+  padding: 1.5rem;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #38444d;
+}
+
+.header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.post {
+  background: #192734;
+  border-radius: 8px;
+  padding: 1rem;
+  color: #e1e8ed;
+  box-shadow: 0 1px 4px rgba(255,255,255,0.05);
+}
+
+.username {
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.text {
+  font-size: 0.95rem;
+  color: #d9d9d9;
+}

@@ -1,0 +1,42 @@
+export const slides = [
+  {
+    name: "Facebook",
+    description: "Kapcsolódj barátaiddal és családoddal.",
+    image: "/images/facebook-slideshow.jpg",
+    logo: "/images/facebook-logo.png",
+    colorLight: "#FFFFFF",
+    colorDark: "#1877F2",
+  },
+  {
+    name: "Instagram",
+    description: "Oszd meg a pillanataidat képekben.",
+    image: "/images/instagram-slideshow.jpg",
+    logo: "/images/instagram-logo.png",
+    colorLight: "#833AB4",
+    colorDark: "#FCAF45",
+  },
+  {
+    name: "X",
+    description: "Fedezd fel a legfrissebb híreket valós időben.",
+    image: "/images/x-slideshow.jpg",
+    logo: "/images/x-logo.png",
+    colorLight: "#D9D9D9",
+    colorDark: "#000000",
+  },
+  {
+    name: "Threads",
+    description: "Beszélgess stílusosan.",
+    image: "/images/threads-slideshow.jpg",
+    logo: "/images/threads-logo.png",
+    colorLight: "#FFFFFF",
+    colorDark: "#000000",
+  },
+  {
+    name: "LinkedIn",
+    description: "Építsd a szakmai hálózatod.",
+    image: "/images/linkedin-slideshow.jpg",
+    logo: "/images/linkedin-logo.png",
+    colorLight: "#FFFFFF",
+    colorDark: "#0077B5",
+  },
+];
