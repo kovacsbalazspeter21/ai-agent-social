@@ -1,5 +1,6 @@
 import os
 import requests
+# LinkedIn posztolás v2 API-hoz
 
 def post_to_linkedin(access_token: str, author_urn: str, text: str, image_urn: str = None):
     """

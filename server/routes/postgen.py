@@ -10,8 +10,8 @@ from fastapi import UploadFile, File
 from dotenv import load_dotenv
 from services.meta_api import post_to_facebook, post_to_instagram
 from services.stability_api import generate_image, generate_video
-from service.x_api import post_to_x
-from service.linkedin_api import post_to_linkedin
+from services.x_api import post_to_x
+from services.linkedin_api import post_to_linkedin
 
 
 load_dotenv()

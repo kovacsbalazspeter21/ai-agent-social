@@ -1,0 +1,162 @@
+AI-Agent-Social Projekt Dokumentáció
+====================================
+
+1. Projekt célja
+----------------
+Ez a projekt egy többplatformos AI-alapú közösségi média posztgenerátor, amely képes Facebook, Instagram, Threads, X (Twitter) és LinkedIn posztokat automatikusan generálni, képekkel és videókkal együtt, majd publikálni az adott platformokra.
+
+2. Fő technológiák
+------------------
+- **Frontend:** React (Next.js), SCSS modulok, Vercel deploy
+- **Backend:** FastAPI (Python), OpenAI API, Stability AI API, platform-specifikus API integrációk
+- **Adattárolás:** JSON fájlok (posztok), uploads mappa (fájlok)
+- **Képgenerálás:** OpenAI DALL-E, Stability AI
+- **Videógenerálás:** Stability AI
+- **Autentikáció:** OAuth redirectek minden platformhoz
+
+3. Fő munkafolyamatok és döntések
+---------------------------------
+
+### 3.1. Frontend (React/Next.js)
+
+- **Platformválasztó sidebar:**  
+  A sidebar komponens logókat és platformneveket jelenít meg, középre igazítva, hogy vizuálisan is egyértelmű legyen a választás.  
+  A logók a `public/images/` mappából töltődnek be, így nem kell importálni őket, csak az útvonalat kell megadni az `<img src=...>` attribútumban.
+
+- **AI posztgenerálás űrlap:**  
+  A felhasználó beírja az ötletét, majd az AI több szöveges posztjavaslatot és képet generál.  
+  A felhasználó kiválasztja, szerkesztheti, majd publikálhatja a posztot.  
+  A média (kép, videó) generálás külön gombbal történik, a kiválasztott média hozzáadódik a poszthoz.
+
+- **Partnerek slider:**  
+  Automatikusan, végtelenül csúszó logó slider, amely egyszerre több logót mutat.  
+  A slider úgy lett kialakítva, hogy az első N logót hozzáfűzi a végéhez, így a csúszás folyamatos, nincs "visszaugrás".
+
+- **SCSS modulok:**  
+  Minden fő komponenshez külön SCSS modul tartozik, így a stílusok jól elkülönülnek, könnyen karbantarthatók.
+
+### 3.2. Backend (FastAPI)
+
+- **CORS Middleware:**  
+  Engedélyezve van minden domainről, hogy a frontend és backend külön porton is kommunikálhasson fejlesztés közben.
+
+- **AI szöveg- és képgenerálás:**  
+  A `/generate-post` végpont OpenAI GPT-3.5-tel generál szöveget, majd DALL-E-vel képet.  
+  A `/generate-image` és `/generate-video` végpontok külön is elérhetők, Stability AI integrációval.
+
+- **Fájl- és linkkezelés:**  
+  Feltöltött fájlokat az `uploads` mappába menti, a linkeket JSON listaként tárolja.
+
+- **Posztok tárolása:**  
+  Minden poszt egyedi JSON fájlba kerül a `storage` mappában, így könnyen visszakereshető, szerkeszthető.
+
+- **Platform API integrációk:**  
+  Minden platformhoz külön függvény és route tartozik (pl. `post_to_facebook`, `post_to_instagram`, `post_to_x`, `post_to_linkedin`).  
+  Ezek a függvények a szükséges paramétereket a request body-ból olvassák ki, így rugalmasan bővíthetők.
+
+### 3.3. DevOps, deploy
+
+- **Vercel deploy:**  
+  A frontend automatikusan deployolódik GitHub push után.  
+  A környezeti változókat a Vercel Dashboardon is be kell állítani, és szükség esetén a `vercel env pull .env` paranccsal lehet letölteni.
+
+- **Backend deploy:**  
+  FastAPI-t fejlesztéshez helyben futtatjuk, éles deployhoz ajánlott Railway, Render vagy más Python-friendly host.
+
+### 3.4. Hibakezelés
+
+- **Frontend:**  
+  Minden fetch köré try/catch került, hogy a felhasználó azonnal visszajelzést kapjon, ha a backend nem elérhető vagy hibát dob.
+
+- **Backend:**  
+  Minden route-ban ellenőrizzük a bemenő adatok meglétét, a külső API hibákat is logoljuk.
+
+### 3.5. Miért így?
+
+- **Egyszerűség:**  
+  A JSON-alapú tárolás és a különálló SCSS modulok gyors fejlesztést és könnyű karbantarthatóságot biztosítanak.
+- **Bővíthetőség:**  
+  Új platform vagy AI funkció könnyen hozzáadható, csak egy új service vagy route kell.
+- **Felhasználói élmény:**  
+  A vizuális platformválasztó, az AI opciók, a médiafeltöltés és a slider mind azt szolgálja, hogy a felhasználó gyorsan, látványosan tudjon posztot generálni.
+
+4. Főbb fájlok és mappák
+------------------------
+- `client/` – Frontend (Next.js, React, SCSS)
+- `server/` – Backend (FastAPI, Python)
+- `server/routes/` – API végpontok (pl. postgen.py)
+- `server/services/` – Platform API integrációk (pl. linkedin_api.py, stability_api.py)
+- `public/images/` – Platform logók
+- `public/partners/` – Partner logók
+- `uploads/` – Feltöltött fájlok
+- `storage/` – Generált posztok JSON fájljai
+
+5. Fejlesztési workflow
+----------------------
+1. **Új funkció fejlesztése**:  
+   - Új komponens vagy service létrehozása.
+   - SCSS modul hozzáadása.
+   - Backend route/service bővítése.
+2. **Tesztelés**:  
+   - Frontend: böngészőben, fejlesztői eszközökkel.
+   - Backend: Swagger UI (`/docs`), Postman.
+3. **Deploy**:  
+   - Git push → Vercel automatikus build.
+   - Szükség esetén környezeti változók frissítése.
+
+6. További bővítési lehetőségek
+------------------------------
+- Többnyelvűség (i18n)
+- Felhasználói fiókok, jogosultságkezelés
+- Analitika, statisztikák
+- Több AI modell támogatása
+
+---
+# 7. Követelmények
+## 7.1. Funkcionális követelmények
+- **Platformválasztó sidebar:**
+  A sidebar komponens logókat és platformneveket jelenít meg, középre igazítva, hogy vizuálisan is egyértelmű legyen a választás.
+- Logók a `public/images/` mappából töltődnek be, így nem kell importálni őket, csak az útvonalat kell megadni az `<img src=...>` attribútumban.
+- **AI posztgenerálás űrlap:**
+  A felhasználó beírja az ötletét, majd az AI több szöveges posztjavaslatot és képet generál.
+  A felhasználó kiválasztja, szerkesztheti, majd publikálhatja a posztot.
+  A média (kép, videó) generálás külön gombbal történik, a kiválasztott média hozzáadódik a poszthoz.
+  **Partnerek slider:**
+  Automatikusan, végtelenül csúszó logó slider, amely egyszerre több logót mutat.
+  A slider úgy lett kialakítva, hogy az első N logót hozzáfűzi a végéhez, így a csúszás folyamatos, nincs "visszaugrás".
+  **SCSS modulok:**
+  Minden fő komponenshez külön SCSS modul tartozik, így a stílusok jól elkülönülnek, könnyen karbantarthatók.
+  **Platform API integrációk:**
+  Minden platformhoz külön függvény és route tartozik (pl. post_to_facebook, post_to_instagram, post_to_x, post_to_linkedin).
+  Ezek a függvények a szükséges paramétereket a request body-ból olvassák ki, így rugalmasan bővíthetők.
+  **Fájl- és linkkezelés:**
+  Feltöltött fájlokat az uploads mappába menti, a linkeket JSON listaként tárolja.
+  **Posztok tárolása:**
+  Minden poszt egyedi JSON fájlba kerül a storage mappában, így könnyen visszakereshető, szerkeszthető.
+  **AI szöveg- és képgenerálás:**
+  A /generate-post végpont OpenAI GPT-3.5-tel generál szöveget, majd DALL-E-vel képet.
+  A /generate-image és /generate-video végpontok külön is elérhetők, Stability AI integrációval.
+  **Hibakezelés:**
+  Minden route-ban ellenőrizzük a bemenő adatok meglétét, a külső API hibákat is logoljuk.
+  **Frontend:**
+  Minden fetch köré try/catch került, hogy a felhasználó azonnal visszajelzést kapjon, ha a backend nem elérhető vagy hibát dob.
+  **Backend:**
+  Minden route-ban ellenőrizzük a bemenő adatok meglétét, a külső API hibákat is logoljuk.
+  **Vercel deploy:**
+  A frontend automatikusan deployolódik GitHub push után.
+  A környezeti változókat a Vercel Dashboardon is be kell állítani, és szükség esetén a `vercel env pull .env` paranccsal lehet letölteni.
+  **Backend deploy:**
+  FastAPI-t fejlesztéshez helyben futtatjuk, éles deployhoz ajánlott Railway, Render vagy más Python-friendly host.
+  **További bővítési lehetőségek:**
+  - Többnyelvűség (i18n)
+  - Felhasználói fiókok, jogosultságkezelés
+  - Analitika, statisztikák
+  - Több AI modell támogatása
+  - Több platform támogatása
+  - Több média támogatása (pl. videó, hang)
+  - Több média típus támogatása (pl. kép, videó, hang)
+  - Több média formátum támogatása (pl. JPEG, PNG, MP4)
+  - Több média képesség támogatása (pl. animáció, motion graphics)
+  - Több média tárolási mód támogatása (pl. Cloudinary, AWS S3)
+  
+
