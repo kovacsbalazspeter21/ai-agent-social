@@ -100,8 +100,8 @@ export default function PlatformView({ platform }) {
       formData.append("images", JSON.stringify([options[selected].image]));
     }
     // Kiválasztott AI kép
-    if (selectedImage) {
-      formData.append("images", JSON.stringify([selectedImage]));
+    if (aiImages.length > 0) {
+      formData.append("images", JSON.stringify(aiImages));
     }
     // Kiválasztott AI videó
     if (selectedVideo) {

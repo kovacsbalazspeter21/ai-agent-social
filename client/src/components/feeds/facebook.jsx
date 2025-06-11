@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from './style/facebook.module.scss';
+import Dabopage from "../dashboard/dabopage";
 
 export default function FacebookFeed({ posts = [], user }) {
   // Példa: user = { name: "John Doe", avatar: "https://..." }
@@ -18,6 +19,9 @@ export default function FacebookFeed({ posts = [], user }) {
         <div className={styles.loginInfo}>
           <span>Jelentkezz be Facebookkal az AI feedhez!</span>
           {/* Ide jöhet a LoginButton komponens */}
+        </div>
+        <div className={styles.loginInfo}>
+          <Dabopage platform="facebook" />
         </div>
       </div>
     );

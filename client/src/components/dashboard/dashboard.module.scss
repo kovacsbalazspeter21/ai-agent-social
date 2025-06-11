@@ -1,0 +1,39 @@
+.dashboard {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.post {
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  overflow: hidden;
+  border: 2px solid #eee;
+  transition: border 0.2s;
+}
+.header {
+  background: #f3f3f3;
+  padding: 1rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.body {
+  padding: 1rem;
+  background: #fff;
+}
+.image {
+  max-width: 200px;
+  margin: 0.5rem 0;
+  border-radius: 6px;
+}
+.video {
+  max-width: 300px;
+  margin: 0.5rem 0;
+  border-radius: 6px;
+}
+.facebook { border-color: #1877f2; }
+.instagram { border-color: #e1306c; }
+.threads { border-color: #000; }
+.x { border-color: #222; }
+.linkedin { border-color: #0073b1; }

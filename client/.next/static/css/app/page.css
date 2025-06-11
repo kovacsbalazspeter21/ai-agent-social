@@ -526,6 +526,68 @@
   font-size: 0.85rem;
   margin-top: 0.2rem;
 }
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[7].use[5]!./src/components/dashboard/dashboard.module.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.dashboard_dashboard__yjJLT {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.dashboard_post__Db9Xy {
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  border: 2px solid #eee;
+  transition: border 0.2s;
+}
+
+.dashboard_header__z1cpc {
+  background: #f3f3f3;
+  padding: 1rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard_body__Zn8se {
+  padding: 1rem;
+  background: #fff;
+}
+
+.dashboard_image__poHWj {
+  max-width: 200px;
+  margin: 0.5rem 0;
+  border-radius: 6px;
+}
+
+.dashboard_video__gWZjw {
+  max-width: 300px;
+  margin: 0.5rem 0;
+  border-radius: 6px;
+}
+
+.dashboard_facebook__tVx3m {
+  border-color: #1877f2;
+}
+
+.dashboard_instagram__UHSod {
+  border-color: #e1306c;
+}
+
+.dashboard_threads__ygH2r {
+  border-color: #000;
+}
+
+.dashboard_x__uzmCK {
+  border-color: #222;
+}
+
+.dashboard_linkedin__c0rIZ {
+  border-color: #0073b1;
+}
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[13].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[13].oneOf[7].use[5]!./src/components/feeds/style/instagram.module.scss ***!
   \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/

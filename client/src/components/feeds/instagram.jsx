@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from './style/instagram.module.scss';
+import Dabopage from "../dashboard/dabopage";
 
 export default function InstagramFeed({ posts = [], user }) {
   // user = { name: "AI User", avatar: "https://..." }
@@ -16,6 +17,9 @@ export default function InstagramFeed({ posts = [], user }) {
         <div className={styles.header}>Instagram</div>
         <div className={styles.loginInfo}>
           <span>Jelentkezz be Instagrammal az AI feedhez!</span>
+        </div>
+        <div className={styles.loginInfo}>
+          <Dabopage platform="instagram" />
         </div>
       </div>
     );

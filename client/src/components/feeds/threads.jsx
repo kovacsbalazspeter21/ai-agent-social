@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from './style/threads.module.scss';
+import Dabopage from "../dashboard/dabopage";
 
 export default function ThreadsFeed({ posts = [], user }) {
   // user = { name: "AI User", avatar: "https://..." }
@@ -16,6 +17,9 @@ export default function ThreadsFeed({ posts = [], user }) {
         <div className={styles.header}>Threads</div>
         <div className={styles.loginInfo}>
           <span>Jelentkezz be Threads-fiókkal az AI feedhez!</span>
+        </div>
+        <div className={styles.loginInfo}>
+          <Dabopage platform="threads" />
         </div>
       </div>
     );

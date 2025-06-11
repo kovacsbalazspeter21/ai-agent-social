@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from './style/linkedin.module.scss';
+import Dabopage from "../dashboard/dabopage";
 
 export default function LinkedinFeed({ posts = [], user }) {
   // user = { name: "AI User", avatar: "https://..." }
@@ -18,6 +19,9 @@ export default function LinkedinFeed({ posts = [], user }) {
         <div className={styles.loginInfo}>
           <span>Jelentkezz be LinkedIn-nel az AI feedhez!</span>
           {/* Ide jöhet a LoginButton komponens */}
+        </div>
+        <div className={styles.loginInfo}>
+          <Dabopage platform="linkedin" />
         </div>
       </div>
     );

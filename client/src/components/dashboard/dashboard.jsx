@@ -1,4 +1,4 @@
-import PlatformView from "../components/generate/aiform";
+import Dabopage from "../dashboard/dabopage";
 import PostList from "./postlist";
 
 export default function Dashboard() {
@@ -6,11 +6,11 @@ export default function Dashboard() {
   return (
     <div style={{ display: "flex", gap: 32 }}>
       <div style={{ flex: 1 }}>
-        <PlatformView platform="facebook" />
-        <PlatformView platform="instagram" />
-        <PlatformView platform="threads" />
-        <PlatformView platform="x" />
-        <PlatformView platform="linkedin" />
+        <Dabopage platform="facebook" />
+        <Dabopage platform="instagram" />
+        <Dabopage platform="threads" />
+        <Dabopage platform="x" />
+        <Dabopage platform="linkedin" />
       </div>
       <div style={{ flex: 1 }}>
         <PostList />
